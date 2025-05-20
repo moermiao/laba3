@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мое резюме</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            transition: background-color 0.5s ease;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* Секция резюме */
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resume-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Фото и основная информация */
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #3498db;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+            margin-right: 30px;
+        }
+
+        .profile-info h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+
+        .profile-info p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+
+        /* Форма для изменения данных */
+        .edit-form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .checkbox-group {
+            margin: 15px 0;
+        }
+
+        .checkbox-group label {
+            display: inline-block;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        /* Кнопки */
+        .btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-random {
+            background-color: #9b59b6;
+        }
+
+        .btn-random:hover {
+            background-color: #8e44ad;
+        }
+
+        .btn-success {
+            background-color: #27ae60;
+            display: none; /* Скрыта по умолчанию */
+        }
+
+        .btn-success:hover {
+            background-color: #219653;
+        }
+
+        /* Конспект курса */
+        .course-summary {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-summary h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .learned-ok {
+            color: #27ae60;
+            font-size: 1.1rem;
+        }
+
+        .learning-in-progress {
+            color: #f39c12;
+            font-size: 1.1rem;
+        }
+
+        .not-learned {
+            color: #e74c3c;
+            font-size: 1.1rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Скрытые элементы */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <h1>Мое резюме</h1>
+        
+        <div class="profile">
+            <img src="ню.png" alt="Мое фото" class="profile-img">
+            <div class="profile-info">
+                <h2 id="firstName">Иван</h2>
+                <p id="lastName">Иванов</p>
+                <p>Возраст: <span id="age">30</span> лет</p>
+                <p>Пол: <span id="gender">М</span></p>
+                <p>Профессия: Веб-разработчик</p>
+            </div>
+        </div>
+
+        <div class="edit-form" id="applicationForm">
+            <h3>Заполните анкету</h3>
+            
+            <div class="form-group">
+                <label for="inputName">Имя:</label>
+                <input type="text" id="inputName" placeholder="Введите ваше имя">
+            </div>
+            
+            <div class="form-group">
+                <label for="inputAge">Возраст:</label>
+                <input type="number" id="inputAge" placeholder="Введите ваш возраст" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label for="inputGender">Пол:</label>
+                <select id="inputGender">
+                    <option value="">Выберите пол</option>
+                    <option value="М">Мужской</option>
+                    <option value="Ж">Женский</option>
+                </select>
+            </div>
+            
+            <!-- Добавленные пункты (пункт 1 задания) -->
+            <div class="form-group">
+                <label for="inputEducation">Образование:</label>
+                <input type="text" id="inputEducation" placeholder="Ваше образование">
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="mathSkill">
+                <label for="mathSkill">Знание математики</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="programmingSkill">
+                <label for="programmingSkill">Знание программирования</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="designSkill">
+                <label for="designSkill">Знание дизайна</label>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="higherEducation">
+                <label for="higherEducation">Высшее образование</label>
+            </div>
+            
+            <button class="btn" onclick="validateForm()">Сохранить данные</button>
+            <button class="btn btn-success" id="hireMeBtn" onclick="hireMe()">Меня возьмут!</button>
+            <button class="btn btn-random" onclick="changeBgColor()">Случайный цвет фона</button>
+        </div>
+
+        <div class="course-summary">
+            <h2>Конспект курса</h2>
+            <p class="learned-ok">Парные теги.</p>
+            <p class="learned-ok">Одиночные теги.</p>
+            <p class="learned-ok">Атрибуты тегов.</p>
+            <p class="learned-ok">Инлайновые (встроенные) стили.</p>
+            <p class="learning-in-progress">Внешние стили.</p>
+            <p class="not-learned">Стилизация по классам.</p>
+        </div>
+    </div>
+
+    <script>
+        // Функция для изменения фамилии
+        function changeLastName() {
+            const newLastName = document.getElementById('newLastName').value;
+            if (newLastName.trim() !== '') {
+                document.getElementById('lastName').textContent = newLastName;
+                document.getElementById('newLastName').value = '';
+                alert('Фамилия успешно изменена!');
+            } else {
+                alert('Пожалуйста, введите новую фамилию');
+            }
+        }
+
+        // Функция для изменения цвета фона
+        function changeBgColor() {
+            const colors = ['#f1c40f', '#e74c3c', '#9b59b6', '#1abc9c', '#3498db', '#e67e22'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // Проверка данных формы (пункт 2 задания)
+        function validateForm() {
+            let isValid = true;
+            
+            // Проверка имени (только текст)
+            const name = document.getElementById('inputName').value.trim();
+            if (!name || !/^[a-zA-Zа-яА-ЯёЁ\s]+$/.test(name)) {
+                alert('Пожалуйста, введите корректное имя (только буквы)');
+                isValid = false;
+            }
+            
+            // Проверка возраста (неотрицательное целое число)
+            const age = document.getElementById('inputAge').value;
+            if (!age || isNaN(age) || age < 0 || !Number.isInteger(Number(age))) {
+                alert('Пожалуйста, введите корректный возраст (целое неотрицательное число)');
+                isValid = false;
+            }
+            
+            // Проверка пола (М или Ж)
+            const gender = document.getElementById('inputGender').value;
+            if (!gender || (gender !== 'М' && gender !== 'Ж')) {
+                alert('Пожалуйста, выберите пол (М или Ж)');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Обновляем данные на странице
+                document.getElementById('firstName').textContent = name;
+                document.getElementById('age').textContent = age;
+                document.getElementById('gender').textContent = gender;
+                
+                // Показываем кнопку "Меня возьмут" (пункт 3 задания)
+                document.getElementById('hireMeBtn').style.display = 'inline-block';
+                
+                alert('Данные успешно сохранены!');
+            } else {
+                // Повторяем ввод, если данные неверные
+                validateForm();
+            }
+        }
+
+        // Обработка нажатия кнопки "Меня возьмут" (пункты 4 и 5 задания)
+        function hireMe() {
+            // Запрещаем изменение checkbox (пункт 4 задания)
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.disabled = true;
+            });
+            
+            // Скрываем форму заполнения анкеты (пункт 5 задания)
+            document.getElementById('applicationForm').classList.add('hidden');
+            
+            // Проверяем навыки (можно реализовать проверку по пунктам 6 или 7)
+            const mathSkill = document.getElementById('mathSkill').checked;
+            const programmingSkill = document.getElementById('programmingSkill').checked;
+            const higherEducation = document.getElementById('higherEducation').checked;
+            
+            if (mathSkill && programmingSkill) {
+                alert('Поздравляем! Вы подходите на должность разработчика!');
+            } else if (higherEducation && 
+                      (mathSkill || programmingSkill || document.getElementById('designSkill').checked)) {
+                alert('Ваше образование и навыки подходят для многих должностей!');
+            } else {
+                alert('Спасибо за анкету! Мы рассмотрим вашу кандидатуру.');
+            }
+        }
+
+        // Взаимодействие с пользователем (задание 1)
+        if (confirm('Доброго времени суток! У этой страницы есть к вам вопрос. Вы готовы ответить?')) {
+            const name = prompt('Как вас зовут?', 'Введите сюда ваше имя');
+            alert("Ваше имя - " + name);
+            
+            // Индивидуальное задание 2
+            const admin = name;
+            alert("Значение переменной admin: " + admin);
+        }
+        alert("Спасибо, что уделили время");
+
+        // Индивидуальное задание 3 (проверка возраста)
+        function askAge() {
+            let age;
+            do {
+                age = prompt('Пожалуйста, введите ваш возраст:');
+                if (age === null) continue; // Если нажата Отмена, цикл продолжится
+                
+                const isCorrect = confirm(`Вы ввели возраст: ${age}. Это правильно?`);
+                if (isCorrect) {
+                    document.getElementById('age').textContent = age;
+                    alert("Спасибо! Ваш возраст принят.");
+                    return age;
+                }
+            } while (true);
+        }
+        
+        askAge(); // Запускаем проверку возраста
+    </script>
+</body>
+</html>
